@@ -1,0 +1,37 @@
+.select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
+  height: 90vh;
+  width: 100vw;
+}
+
+.Money {
+  float: left;
+  border-radius: 1000px;
+  padding: 10px 15px;
+  box-shadow: 1px 1px black;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+.head {
+  margin: 10px;
+}
+
+.dack {
+  border-radius: 30px;
+  width: 150px;
+  height: 100px;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.dack:hover {
+  background-color: ghostwhite;
+}
