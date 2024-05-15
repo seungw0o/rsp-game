@@ -9,7 +9,8 @@
 
 .Money {
   float: left;
-  border-radius: 1000px;
+  width: fit-content;
+  border-radius: 100px;
   padding: 10px 15px;
   box-shadow: 1px 1px black;
 }
@@ -17,10 +18,18 @@
 .title {
   display: flex;
   justify-content: center;
+  width: fit-content;
+  margin: auto;
 }
 
 .head {
   margin: 10px;
+}
+
+@media (max-width: 570px) {
+  .Money {
+    display: block;
+  }
 }
 
 .dack {
@@ -43,9 +52,19 @@
   text-align: center;
   padding: 10px 0px;
   width: 300px;
-  margin: auto;
-  margin-top: 300px;
+  margin: 15px auto 0 auto;
   border-radius: 100px;
+}
+
+.rate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px auto auto auto;
+  border: solid;
+  border-radius: 100px;
+  padding: 10px;
+  width: fit-content;
 }
 
 .resetButton {
@@ -57,10 +76,31 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 30px auto auto auto;
+  margin: 20px auto auto auto;
   background-color: transparent;
 }
 
 .resetButton:hover {
   background-color: ghostwhite;
+}
+
+.viewSelect {
+  margin-top: 200px;
+  margin-bottom: auto;
+}
+
+.view {
+  border: solid;
+  border-radius: 100px;
+  padding: 10px;
+  width: fit-content;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#computer {
+  margin-top: 20px;
 }
