@@ -7,10 +7,36 @@ const Money = document.querySelector(".num");
 const Result = document.querySelector(".result");
 const mainResult = document.querySelector(".mainResult");
 const Rate = document.querySelector(".rate");
+const ViewSelect = document.querySelector(".viewSelect");
 let Moneynum = Number(Money.innerHTML);
 let resetButton;
 let userSelect;
+let GameOver;
+ViewSelect.style.display = "none";
+Result.style.display = "none";
+Rate.style.display = "none";
 // rock = 1, scissors = 2 , paper = 3
+
+function setGameover() {
+  if (Moneynum === Number(0)) {
+    ViewSelect.style.display = "none";
+    Result.style.display = "none";
+    Rate.style.display = "none";
+    GameOver = document.createElement("h1");
+    GameOver.className = "gameover";
+    GameOver.textContent = "Game Over !";
+    mainResult.appendChild(GameOver);
+  }
+}
+
+function gameOver() {
+  if (Moneynum === Number(0)) {
+    resetButton.addEventListener("click", function () {
+      Moneynum = Number(1000);
+      Money.innerHTML = Moneynum;
+    });
+  }
+}
 
 function viewSelect() {
   const user = document.querySelector("#user");
@@ -77,6 +103,10 @@ function reset() {
   Select.style.display = "flex";
   resetButton.remove();
   computerSelect = Math.floor(Math.random() * 3 + 1);
+  ViewSelect.style.display = "none";
+  Result.style.display = "none";
+  Rate.style.display = "none";
+  GameOver.remove();
 }
 
 Rock.addEventListener("click", function () {
@@ -88,8 +118,13 @@ Rock.addEventListener("click", function () {
   } else if (computerSelect == 3) {
     lost();
   }
-  creatReset();
   viewSelect();
+  ViewSelect.style.display = "block";
+  Result.style.display = "flex";
+  Rate.style.display = "flex";
+  setGameover();
+  creatReset();
+  gameOver();
 });
 Scissors.addEventListener("click", function () {
   userSelect = 2;
@@ -100,8 +135,13 @@ Scissors.addEventListener("click", function () {
   } else if (computerSelect == 1) {
     lost();
   }
-  creatReset();
   viewSelect();
+  ViewSelect.style.display = "block";
+  Result.style.display = "flex";
+  Rate.style.display = "flex";
+  setGameover();
+  creatReset();
+  gameOver();
 });
 Paper.addEventListener("click", function () {
   userSelect = 3;
@@ -112,6 +152,11 @@ Paper.addEventListener("click", function () {
   } else if (computerSelect == 2) {
     lost();
   }
-  creatReset();
   viewSelect();
+  ViewSelect.style.display = "block";
+  Result.style.display = "flex";
+  Rate.style.display = "flex";
+  setGameover();
+  creatReset();
+  gameOver();
 });

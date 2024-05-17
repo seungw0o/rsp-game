@@ -104,3 +104,14 @@
 #computer {
   margin-top: 20px;
 }
+
+.gameover {
+  border: solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  border-radius: 100px;
+  margin: 250px auto auto auto;
+  padding: 5px;
+}
