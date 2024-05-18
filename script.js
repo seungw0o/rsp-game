@@ -8,6 +8,8 @@ const Result = document.querySelector(".result");
 const mainResult = document.querySelector(".mainResult");
 const Rate = document.querySelector(".rate");
 const ViewSelect = document.querySelector(".viewSelect");
+const Bate = document.querySelector(".bate");
+const Bating = document.querySelector(".bating");
 let Moneynum = Number(Money.innerHTML);
 let resetButton;
 let userSelect;
@@ -15,6 +17,9 @@ let GameOver;
 ViewSelect.style.display = "none";
 Result.style.display = "none";
 Rate.style.display = "none";
+if (Bate.value <= 0) {
+  Bate.value = 0;
+}
 // rock = 1, scissors = 2 , paper = 3
 
 function setGameover() {
@@ -78,25 +83,25 @@ function win() {
   Result.textContent = "win";
   Result.style.backgroundColor = "green";
   Result.style.color = "white";
-  Moneynum += 100;
+  Moneynum += Number(Bate.value) * Number(2);
   Money.innerHTML = Moneynum;
-  Rate.textContent = "Money : +100";
+  Rate.textContent = "Money : +" + Number(Bate.value) * Number(2);
 }
 function lost() {
   Select.style.display = "none";
   Result.textContent = "lost";
   Result.style.backgroundColor = "red";
   Result.style.color = "white";
-  Moneynum -= 100;
+  Moneynum -= Number(Bate.value);
   Money.innerHTML = Moneynum;
-  Rate.textContent = "Money : -100";
+  Rate.textContent = "Money : -" + Number(Bate.value);
 }
 function draw() {
   Select.style.display = "none";
   Result.textContent = "draw";
   Result.style.backgroundColor = "black";
   Result.style.color = "white";
-  Rate.textContent = "Money : +" + 0;
+  Rate.textContent = "Money : +0";
 }
 
 function reset() {
@@ -106,6 +111,8 @@ function reset() {
   ViewSelect.style.display = "none";
   Result.style.display = "none";
   Rate.style.display = "none";
+  Bating.style.display = "flex";
+  Bate.value = 0;
   GameOver.remove();
 }
 
@@ -125,6 +132,7 @@ Rock.addEventListener("click", function () {
   setGameover();
   creatReset();
   gameOver();
+  Bating.style.display = "none";
 });
 Scissors.addEventListener("click", function () {
   userSelect = 2;
@@ -142,6 +150,7 @@ Scissors.addEventListener("click", function () {
   setGameover();
   creatReset();
   gameOver();
+  Bating.style.display = "none";
 });
 Paper.addEventListener("click", function () {
   userSelect = 3;
@@ -159,4 +168,5 @@ Paper.addEventListener("click", function () {
   setGameover();
   creatReset();
   gameOver();
+  Bating.style.display = "none";
 });
