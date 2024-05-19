@@ -142,8 +142,7 @@ Rock.addEventListener("click", function () {
   if (Number(Bate.value) < Number(0)) {
     alert("No input minus number!");
     Bate.value = 0;
-  }
-  if (Number(Bate.value) > Number(Moneynum)) {
+  } else if (Number(Bate.value) > Number(Moneynum)) {
     alert("No input higher number!");
     Bate.value = 0;
   } else if (computerSelect == 2) {
@@ -166,8 +165,7 @@ Scissors.addEventListener("click", function () {
   if (Number(Bate.value) < Number(0)) {
     alert("No input minus number!");
     Bate.value = 0;
-  }
-  if (Number(Bate.value) > Number(Moneynum)) {
+  } else if (Number(Bate.value) > Number(Moneynum)) {
     alert("No input higher number!");
     Bate.value = 0;
   } else if (computerSelect == 3) {
@@ -190,8 +188,7 @@ Paper.addEventListener("click", function () {
   if (Number(Bate.value) < Number(0)) {
     alert("No input minus number!");
     Bate.value = 0;
-  }
-  if (Number(Bate.value) > Number(Moneynum)) {
+  } else if (Number(Bate.value) > Number(Moneynum)) {
     alert("No input higher number!");
     Bate.value = 0;
   } else if (computerSelect == 1) {
