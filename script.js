@@ -39,6 +39,7 @@ function gameOver() {
     resetButton.addEventListener("click", function () {
       Moneynum = Number(1000);
       Money.innerHTML = Moneynum;
+      GameOver.remove();
     });
   }
 }
@@ -86,6 +87,13 @@ function win() {
   Moneynum += Number(Bate.value) * Number(2);
   Money.innerHTML = Moneynum;
   Rate.textContent = "Money : +" + Number(Bate.value) * Number(2);
+  ViewSelect.style.display = "block";
+  Result.style.display = "flex";
+  Rate.style.display = "flex";
+  setGameover();
+  creatReset();
+  gameOver();
+  Bating.style.display = "none";
 }
 function lost() {
   Select.style.display = "none";
@@ -95,6 +103,13 @@ function lost() {
   Moneynum -= Number(Bate.value);
   Money.innerHTML = Moneynum;
   Rate.textContent = "Money : -" + Number(Bate.value);
+  ViewSelect.style.display = "block";
+  Result.style.display = "flex";
+  Rate.style.display = "flex";
+  setGameover();
+  creatReset();
+  gameOver();
+  Bating.style.display = "none";
 }
 function draw() {
   Select.style.display = "none";
@@ -102,6 +117,13 @@ function draw() {
   Result.style.backgroundColor = "black";
   Result.style.color = "white";
   Rate.textContent = "Money : +0";
+  ViewSelect.style.display = "block";
+  Result.style.display = "flex";
+  Rate.style.display = "flex";
+  setGameover();
+  creatReset();
+  gameOver();
+  Bating.style.display = "none";
 }
 
 function reset() {
@@ -113,60 +135,77 @@ function reset() {
   Rate.style.display = "none";
   Bating.style.display = "flex";
   Bate.value = 0;
-  GameOver.remove();
 }
 
 Rock.addEventListener("click", function () {
   userSelect = 1;
-  if (computerSelect == 2) {
-    win();
+  if (Number(Bate.value) < Number(0)) {
+    alert("No input minus number!");
+    Bate.value = 0;
+  }
+  if (Number(Bate.value) > Number(Moneynum)) {
+    alert("No input higher number!");
+    Bate.value = 0;
+  } else if (computerSelect == 2) {
+    if (Number(Bate.value) >= Number(0)) {
+      win();
+    }
   } else if (computerSelect == 1) {
-    draw();
+    if (Number(Bate.value) >= Number(0)) {
+      draw();
+    }
   } else if (computerSelect == 3) {
-    lost();
+    if (Number(Bate.value) >= Number(0)) {
+      lost();
+    }
   }
   viewSelect();
-  ViewSelect.style.display = "block";
-  Result.style.display = "flex";
-  Rate.style.display = "flex";
-  setGameover();
-  creatReset();
-  gameOver();
-  Bating.style.display = "none";
 });
 Scissors.addEventListener("click", function () {
   userSelect = 2;
-  if (computerSelect == 3) {
-    win();
-  } else if (computerSelect == 2) {
-    draw();
+  if (Number(Bate.value) < Number(0)) {
+    alert("No input minus number!");
+    Bate.value = 0;
+  }
+  if (Number(Bate.value) > Number(Moneynum)) {
+    alert("No input higher number!");
+    Bate.value = 0;
+  } else if (computerSelect == 3) {
+    if (Number(Bate.value) >= Number(0)) {
+      win();
+    }
   } else if (computerSelect == 1) {
-    lost();
+    if (Number(Bate.value) >= Number(0)) {
+      draw();
+    }
+  } else if (computerSelect == 3) {
+    if (Number(Bate.value) >= Number(0)) {
+      lost();
+    }
   }
   viewSelect();
-  ViewSelect.style.display = "block";
-  Result.style.display = "flex";
-  Rate.style.display = "flex";
-  setGameover();
-  creatReset();
-  gameOver();
-  Bating.style.display = "none";
 });
 Paper.addEventListener("click", function () {
   userSelect = 3;
-  if (computerSelect == 1) {
-    win();
+  if (Number(Bate.value) < Number(0)) {
+    alert("No input minus number!");
+    Bate.value = 0;
+  }
+  if (Number(Bate.value) > Number(Moneynum)) {
+    alert("No input higher number!");
+    Bate.value = 0;
+  } else if (computerSelect == 1) {
+    if (Number(Bate.value) >= Number(0)) {
+      win();
+    }
+  } else if (computerSelect == 1) {
+    if (Number(Bate.value) >= Number(0)) {
+      draw();
+    }
   } else if (computerSelect == 3) {
-    draw();
-  } else if (computerSelect == 2) {
-    lost();
+    if (Number(Bate.value) >= Number(0)) {
+      lost();
+    }
   }
   viewSelect();
-  ViewSelect.style.display = "block";
-  Result.style.display = "flex";
-  Rate.style.display = "flex";
-  setGameover();
-  creatReset();
-  gameOver();
-  Bating.style.display = "none";
 });
