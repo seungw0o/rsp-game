@@ -10,20 +10,16 @@ const Rate = document.querySelector(".rate");
 const ViewSelect = document.querySelector(".viewSelect");
 const Bate = document.querySelector(".bate");
 const Bating = document.querySelector(".bating");
-let Moneynum = Number(Money.innerHTML);
+let Moneynum = +Money.innerHTML;
 let resetButton;
 let userSelect;
 let GameOver;
 ViewSelect.style.display = "none";
 Result.style.display = "none";
 Rate.style.display = "none";
-if (Bate.value <= 0) {
-  Bate.value = 0;
-}
-// rock = 1, scissors = 2 , paper = 3
 
 function setGameover() {
-  if (Moneynum === Number(0)) {
+  if (Moneynum === +0) {
     ViewSelect.style.display = "none";
     Result.style.display = "none";
     Rate.style.display = "none";
@@ -35,9 +31,9 @@ function setGameover() {
 }
 
 function gameOver() {
-  if (Moneynum === Number(0)) {
+  if (Moneynum === 0) {
     resetButton.addEventListener("click", function () {
-      Moneynum = Number(1000);
+      Moneynum = 1000;
       Money.innerHTML = Moneynum;
       GameOver.remove();
     });
@@ -71,6 +67,16 @@ function viewSelect() {
   }
 }
 
+function setting() {
+  ViewSelect.style.display = "block";
+  Result.style.display = "flex";
+  Rate.style.display = "flex";
+  setGameover();
+  creatReset();
+  gameOver();
+  Bating.style.display = "none";
+}
+
 function creatReset() {
   resetButton = document.createElement("button");
   resetButton.textContent = "try again";
@@ -79,51 +85,28 @@ function creatReset() {
   resetButton.addEventListener("click", reset);
 }
 
-function win() {
+function resultHandler(type, color) {
   Select.style.display = "none";
-  Result.textContent = "win";
-  Result.style.backgroundColor = "green";
+  Result.textContent = type;
+  Result.style.backgroundColor = color;
   Result.style.color = "white";
-  Moneynum += Number(Bate.value) * Number(2);
-  Money.innerHTML = Moneynum;
-  Rate.textContent = "Money : +" + Number(Bate.value) * Number(2);
-  ViewSelect.style.display = "block";
-  Result.style.display = "flex";
-  Rate.style.display = "flex";
-  setGameover();
-  creatReset();
-  gameOver();
-  Bating.style.display = "none";
-}
-function lost() {
-  Select.style.display = "none";
-  Result.textContent = "lost";
-  Result.style.backgroundColor = "red";
-  Result.style.color = "white";
-  Moneynum -= Number(Bate.value);
-  Money.innerHTML = Moneynum;
-  Rate.textContent = "Money : -" + Number(Bate.value);
-  ViewSelect.style.display = "block";
-  Result.style.display = "flex";
-  Rate.style.display = "flex";
-  setGameover();
-  creatReset();
-  gameOver();
-  Bating.style.display = "none";
-}
-function draw() {
-  Select.style.display = "none";
-  Result.textContent = "draw";
-  Result.style.backgroundColor = "black";
-  Result.style.color = "white";
-  Rate.textContent = "Money : +0";
-  ViewSelect.style.display = "block";
-  Result.style.display = "flex";
-  Rate.style.display = "flex";
-  setGameover();
-  creatReset();
-  gameOver();
-  Bating.style.display = "none";
+  switch (type) {
+    case "win":
+      Moneynum += +Bate.value * 2;
+      Money.innerHTML = Moneynum;
+      Rate.textContent = `Money : +${+Bate.value * 2}`;
+      break;
+    case "lose":
+      Moneynum -= +Bate.value;
+      Money.innerHTML = Moneynum;
+      Rate.textContent = `Money : -${+Bate.value}`;
+      break;
+    case "draw":
+      Rate.textContent = "Money : +0";
+      break;
+  }
+
+  setting();
 }
 
 function reset() {
@@ -137,72 +120,75 @@ function reset() {
   Bate.value = 0;
 }
 
+// rock = 1, scissors = 2 , paper = 3
+function btnHandler(kind) {
+  userSelect = kind;
+  if (+Bate.value < 0) {
+    alert("No input minus +!");
+    Bate.value = 0;
+  } else if (+Bate.value > +Moneynum) {
+    alert("No input higher +!");
+    Bate.value = 0;
+  } else if (+Bate.value >= 0) {
+    switch (kind) {
+      case 1:
+        switch (computerSelect) {
+          case 1:
+            resultHandler("draw", "black");
+            break;
+          case 2:
+            resultHandler("win", "green");
+            break;
+
+          case 3:
+            resultHandler("lost", "red");
+            break;
+        }
+        break;
+
+      case 2:
+        switch (computerSelect) {
+          case 1:
+            resultHandler("lost", "red");
+            break;
+
+          case 2:
+            resultHandler("draw", "black");
+            break;
+
+          case 3:
+            resultHandler("win", "green");
+            break;
+        }
+        break;
+
+      case 3:
+        switch (computerSelect) {
+          case 1:
+            resultHandler("win", "green");
+            break;
+
+          case 2:
+            resultHandler("lose", "red");
+            break;
+
+          case 3:
+            resultHandler("draw", "black");
+            break;
+        }
+        break;
+    }
+  }
+  viewSelect();
+}
+
 Rock.addEventListener("click", function () {
-  userSelect = 1;
-  if (Number(Bate.value) < Number(0)) {
-    alert("No input minus number!");
-    Bate.value = 0;
-  } else if (Number(Bate.value) > Number(Moneynum)) {
-    alert("No input higher number!");
-    Bate.value = 0;
-  } else if (computerSelect == 2) {
-    if (Number(Bate.value) >= Number(0)) {
-      win();
-    }
-  } else if (computerSelect == 1) {
-    if (Number(Bate.value) >= Number(0)) {
-      draw();
-    }
-  } else if (computerSelect == 3) {
-    if (Number(Bate.value) >= Number(0)) {
-      lost();
-    }
-  }
-  viewSelect();
+  btnHandler(1);
 });
+
 Scissors.addEventListener("click", function () {
-  userSelect = 2;
-  if (Number(Bate.value) < Number(0)) {
-    alert("No input minus number!");
-    Bate.value = 0;
-  } else if (Number(Bate.value) > Number(Moneynum)) {
-    alert("No input higher number!");
-    Bate.value = 0;
-  } else if (computerSelect == 1) {
-    if (Number(Bate.value) >= Number(0)) {
-      win();
-    }
-  } else if (computerSelect == 2) {
-    if (Number(Bate.value) >= Number(0)) {
-      draw();
-    }
-  } else if (computerSelect == 3) {
-    if (Number(Bate.value) >= Number(0)) {
-      lost();
-    }
-  }
-  viewSelect();
+  btnHandler(2);
 });
 Paper.addEventListener("click", function () {
-  userSelect = 3;
-  if (Number(Bate.value) < Number(0)) {
-    alert("No input minus number!");
-    Bate.value = 0;
-  } else if (Number(Bate.value) > Number(Moneynum)) {
-    alert("No input higher number!");
-    Bate.value = 0;
-  } else if (computerSelect == 1) {
-    if (Number(Bate.value) >= Number(0)) {
-      win();
-    }
-  } else if (computerSelect == 3) {
-    if (Number(Bate.value) >= Number(0)) {
-      draw();
-    }
-  } else if (computerSelect == 2) {
-    if (Number(Bate.value) >= Number(0)) {
-      lost();
-    }
-  }
-  viewSelect();
+  btnHandler(3);
 });
