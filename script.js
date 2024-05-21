@@ -168,11 +168,11 @@ Scissors.addEventListener("click", function () {
   } else if (Number(Bate.value) > Number(Moneynum)) {
     alert("No input higher number!");
     Bate.value = 0;
-  } else if (computerSelect == 3) {
+  } else if (computerSelect == 1) {
     if (Number(Bate.value) >= Number(0)) {
       win();
     }
-  } else if (computerSelect == 1) {
+  } else if (computerSelect == 2) {
     if (Number(Bate.value) >= Number(0)) {
       draw();
     }
@@ -195,11 +195,11 @@ Paper.addEventListener("click", function () {
     if (Number(Bate.value) >= Number(0)) {
       win();
     }
-  } else if (computerSelect == 1) {
+  } else if (computerSelect == 3) {
     if (Number(Bate.value) >= Number(0)) {
       draw();
     }
-  } else if (computerSelect == 3) {
+  } else if (computerSelect == 2) {
     if (Number(Bate.value) >= Number(0)) {
       lost();
     }
